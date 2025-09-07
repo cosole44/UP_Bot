@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ADMIN_IDS = [int(x) for x in os.getenv("ADMIN_IDS").split(",")]
+ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()]
 
 router = Router()
 
@@ -66,3 +66,4 @@ async def show_user_report(callback: CallbackQuery):
     report = get_user_report(user_id, str(start), str(end))
     full_name = get_user_name(user_id)
     await callback.message.edit_text(f"📄 Отчёт по сотруднику {full_name}:\n\n{report}")
+
