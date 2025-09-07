@@ -1,0 +1,21 @@
+# Виртуальное окружение
+.venv/
+venv/
+
+# PyCharm
+.idea/
+
+# Файлы Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Логи и временные файлы
+*.log
+*.sqlite
+*.db
+.env
+
+# MacOS
+.DS_Store
