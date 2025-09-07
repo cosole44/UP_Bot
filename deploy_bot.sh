@@ -14,6 +14,11 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+# Установка необходимых пакетов для Python и venv
+echo "Проверяем и устанавливаем python3-venv и python3-pip..."
+apt update
+apt install -y python3-venv python3-pip git curl
+
 # Клонируем репозиторий, если нет
 if [ ! -d "$PROJECT_DIR" ]; then
   git clone "$GITHUB_REPO" "$PROJECT_DIR"
