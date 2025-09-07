@@ -1,14 +1,10 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
-import os
 from db import get_all_users, get_user_name
 from utils.report import get_user_report
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
+from bot import ADMIN_IDS
 
-load_dotenv()
-
-ADMIN_IDS = [int(x.strip()) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip()]
 
 router = Router()
 
