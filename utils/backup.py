@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from aiogram import Bot
 
 BACKUP_FILE = "/home/oleg/UP_Bot/up.db"
-ADMIN_ID = 1736391806  # твой Telegram ID
+ADMIN_ID = 723549701  # твой Telegram ID
 TZ = pytz.timezone("Asia/Yekaterinburg")
 
 async def daily_backup(bot: Bot):
