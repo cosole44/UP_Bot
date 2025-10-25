@@ -2,14 +2,12 @@ import sqlite3
 
 # Список операций, которые отображаются в отчёте
 REPORT_ACTIONS = [
-    "Вклад", "ЗЛС", "КК", "Прайм", "СЗ", "ПК", "ПДС", "ОПС",
+    "Вклад", "Детская карта", "ЗЛС", "КК", "Прайм", "СЗ", "ПК", "ПДС", "ОПС",
     "Сберправо", "Пенсия", "Бокс/бум", "Свое дело",
     "Мобайл", "Адафа", "Амана", "Осаго", "Открытие расчётного счета"
 ]
 
 def get_user_report(user_id: int, date_from: str, date_to: str):
-
-
     conn = sqlite3.connect("up.db")
     cur = conn.cursor()
 
@@ -37,23 +35,24 @@ def get_user_report(user_id: int, date_from: str, date_to: str):
             report_dict[action]['count'] = count
             report_dict[action]['value'] = value_sum
 
-    # Заголовок
+    # Итоговая сумма всех операций
+    total_all = sum(value_sum for _, _, value_sum in results)
+
+    # Формируем текст отчёта
+    text = f"🧮 Итого: {total_all:.2f} УП\n"
+    text += f"\n👥 Количество клиентов: {clients_total}\n\n"
+    # Подробности по операциям
+    for action, data in report_dict.items():
+        text += f"{action} {data['count']}\n"
+
+    # Заголовок теперь внизу
     if date_from == date_to:
         header = f"📊 Отчёт за {date_from}"
     else:
         header = f"📊 Отчёт с {date_from} по {date_to}"
 
-    text = f"{header}:\n\n"
-    total = 0
-    for action, data in report_dict.items():
-        text += f"{action} {data['count']}\n"
-        total += data['value']
 
-    # Итоговая сумма всех операций
-    total_all = sum(value_sum for _, _, value_sum in results)
-    text += f"\n🧮 Итого: {total_all:.2f} УП"
-    text += f"\n👥 Количество клиентов: {clients_total}"
+
+    text += f"\n{header}"
 
     return text
-
-

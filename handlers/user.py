@@ -208,6 +208,8 @@ async def handle_manual_input(message: types.Message, state: FSMContext):
     if sign == "-":
         value = -value
 
+    await message.delete()
+
     date = datetime.now().date().isoformat()
     action_name = "Ручная корректировка"
 
