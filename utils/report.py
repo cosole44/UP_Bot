@@ -40,7 +40,7 @@ def get_user_report(user_id: int, date_from: str, date_to: str):
 
     # Формируем текст отчёта
     text = f"🧮 Итого: {total_all:.2f} УП\n"
-    text += f"\n👥 Количество клиентов: {clients_total}\n\n"
+    text += f"👥 Количество клиентов: {clients_total}\n\n"
     # Подробности по операциям
     for action, data in report_dict.items():
         text += f"{action} {data['count']}\n"
