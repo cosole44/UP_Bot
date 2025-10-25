@@ -56,7 +56,6 @@ async def main():
         await bot.session.close()
         print("Сессия бота закрыта.")
 
-
 if __name__ == "__main__":
     asyncio.run(main())
 

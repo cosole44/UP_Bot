@@ -51,8 +51,6 @@ def get_user_report(user_id: int, date_from: str, date_to: str):
     else:
         header = f"📊 Отчёт с {date_from} по {date_to}"
 
-
-
     text += f"\n{header}"
 
     return text

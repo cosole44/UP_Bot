@@ -29,7 +29,6 @@ VARIANT_ACTIONS = {
     }
 }
 
-
 @router.message(F.text.lower() == "новый клиент")
 async def new_client(message: types.Message):
     await message.delete()
